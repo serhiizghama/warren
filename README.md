@@ -1,6 +1,12 @@
-# 🐇 warren
+<div align="center">
+
+<img src="assets/logo.jpeg" alt="warren" width="300">
+
+# warren
 
 **A self-hosted warren of always-on Claude Code agents that build and maintain your personal knowledge base — running on your subscription, not the metered API.**
+
+</div>
 
 A *warren* is a network of connected burrows. Here it's a network of connected
 agents: one orchestrator routes work to specialized domain agents, each living in

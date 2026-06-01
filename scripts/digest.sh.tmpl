@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# warren — daily digest (Type B1: cron → bus → orchestrator wakes up → Telegram).
+# Does NOT use `claude -p`. Writes one bus message; the bus daemon pushes it to the
+# already-running orchestrator. Cron example: 0 7 * * *
+#
+# Fill {{WARREN_ROOT}} and {{ORCH_LC}} when you install this (bootstrap can do it).
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
+WARREN_ROOT="{{WARREN_ROOT}}"
+ORCH="{{ORCH_LC}}"
+BODY_FILE="$(mktemp /tmp/warren_digest.XXXXXX)"
+
+cat > "$BODY_FILE" <<'BODY'
+Produce the daily digest. Read files NOW — don't trust cached session state.
+For each domain agent:
+  1. grep '^## \[' <Domain>/log.md | tail -3        (recent ops)
+  2. find <Domain>/wiki/ -name "*.md" | sort | tail -1   (newest content file)
+Use the LATER of the two dates as "last activity".
+Build a one-line-per-agent brief: "Name: what happened / last file YYYY-MM-DD".
+Add "⚠️ Attention: ..." for anything overdue or stuck.
+Send the final text to Telegram (creds in config/credentials/telegram-bot.md, via curl).
+If a domain has no log entry AND no new wiki file in > 10 days, send it a bus message:
+  <repo>/core/bus/send.sh --to <agent> --from <orch> --title "digest-alert" --body "<what>"
+Do all of this autonomously — no questions.
+BODY
+
+"$WARREN_ROOT/core/bus/send.sh" --to "$ORCH" --from cron --title "daily-digest" --body-file "$BODY_FILE"
+rm -f "$BODY_FILE"

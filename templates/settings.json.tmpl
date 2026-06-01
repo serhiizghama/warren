@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "{{WARREN_ROOT}}/core/bus/check-inbox.sh {{AGENT_LC}}",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

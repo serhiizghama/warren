@@ -1,0 +1,18 @@
+# agents.conf — the agent roster. Bootstrap generates the real one at repo root
+# (agents.conf, git-ignored) from your answers. This is just a reference.
+#
+# Columns (whitespace-separated):
+#   tmux_key   AgentName   working_dir
+#
+#   tmux_key    = short tmux session name (first letter(s), lowercase). Must be unique.
+#   AgentName   = full name (shown in Remote Control, passed to --name).
+#   working_dir = path relative to VAULT_PATH. "." = vault root = the ORCHESTRATOR.
+#
+# Exactly one agent must have working_dir "." — that's your orchestrator.
+
+# key   name        dir
+g       Gamma       .
+f       Finance     Finance
+h       Health      Health
+t       Tasks       Tasks
+j       Journal     Journal

@@ -1,0 +1,13 @@
+# warren.config — runtime settings. Bootstrap generates the real one at repo root
+# (warren.config, git-ignored) from your answers. This is just a reference.
+#
+# Sourced by all engine scripts. Plain shell variables — keep it simple.
+
+# Absolute path to your private vault (git-ignored; lives at <repo>/vault by default).
+VAULT_PATH="$HOME/warren/vault"
+
+# Claude model for every agent. "[1m]" requests the 1M-token context variant.
+MODEL="sonnet[1m]"
+
+# Telegram push notifications. 1 = on (needs config/credentials/telegram-bot.md).
+TELEGRAM_ENABLED="0"

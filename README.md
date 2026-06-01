@@ -78,6 +78,32 @@ See **[ARCHITECTURE.md](ARCHITECTURE.md)** for the full technical design and
 
 ---
 
+## Talking to your agents
+
+Your agents run as live sessions on your machine. There are three ways to reach them:
+
+1. **Claude app — desktop & mobile (Remote Control).** Install the Claude app on your
+   computer or phone (or just open [claude.ai](https://claude.ai)), sign in with the same
+   account, and every agent shows up in the Remote Control list by name. Tap one and chat
+   with it from anywhere — same session, same context as the terminal. This is the easiest
+   way to drive the network from your phone.
+
+2. **Terminal (tmux) — local or over SSH.** Attach directly to any agent's session:
+   ```bash
+   tmux attach -t <key>      # e.g. tmux attach -t g   for the orchestrator
+   ```
+   On a VPS, SSH in first, then attach. Detach with `Ctrl-b d`. This is the most direct,
+   keyboard-driven way to work, and the one that always works on a headless server.
+
+3. **Telegram — notifications (for now).** The bot pushes daily digests, alerts, and live
+   bus traffic to your phone so you can watch the network without opening anything.
+
+> **On the roadmap:** a two-way Telegram channel — message any agent and get its reply
+> right inside Telegram, no app or terminal needed. Today Telegram is **outbound only**
+> (notifications); full conversational control over Telegram is planned.
+
+---
+
 ## ⚠️ Safety — read this
 
 warren runs agents with `claude --dangerously-skip-permissions` so they can work

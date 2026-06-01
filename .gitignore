@@ -1,0 +1,20 @@
+# ─── Personal data — NEVER committed ────────────────────────────────
+# The generated knowledge vault lives here. It is yours, it is private.
+vault/
+
+# Credentials: real tokens/keys. Only the *.example.* files are tracked.
+config/credentials/*
+!config/credentials/*.example.*
+**/Credentials/
+*.token
+
+# Generated runtime config (created by bootstrap from your answers)
+warren.config
+agents.conf
+
+# ─── Runtime noise ──────────────────────────────────────────────────
+*.log
+*.done
+*.lock
+.DS_Store
+/tmp/
